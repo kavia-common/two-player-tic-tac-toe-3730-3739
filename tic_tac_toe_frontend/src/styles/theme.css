@@ -1,0 +1,166 @@
+:root {
+  --ocean-primary: #2563EB;
+  --ocean-secondary: #F59E0B;
+  --ocean-success: #F59E0B;
+  --ocean-error: #EF4444;
+  --ocean-bg: #f9fafb;
+  --ocean-surface: #ffffff;
+  --ocean-text: #111827;
+  --ocean-gradient: linear-gradient(135deg, #3b82f61a 0%, #f9fafb 100%);
+  --ocean-shadow: 0 2px 16px 0 rgba(37, 99, 235, 0.10), 0 0.5px 2px 0 rgba(16, 24, 39, 0.04);
+  --ocean-radius: 16px;
+  --ocean-transition: 0.2s cubic-bezier(.4,0,.2,1);
+}
+
+body {
+  background: var(--ocean-gradient);
+  color: var(--ocean-text);
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Centering and app layout */
+.tic-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ocean-gradient);
+  padding: 2rem 1rem;
+}
+
+.tic-game-surface {
+  background: var(--ocean-surface);
+  border-radius: var(--ocean-radius);
+  box-shadow: var(--ocean-shadow);
+  padding: 2.5rem 2rem 1.5rem 2rem;
+  min-width: 320px;
+  max-width: 95vw;
+  transition: box-shadow var(--ocean-transition);
+}
+
+.tic-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--ocean-primary);
+  text-align: center;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.5px;
+}
+
+.tic-status {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  color: var(--ocean-primary);
+}
+
+.tic-winner {
+  color: var(--ocean-success);
+  font-weight: bold;
+  font-size: 1.35rem;
+}
+
+.tic-draw {
+  color: var(--ocean-text);
+  font-weight: 500;
+  font-size: 1.23rem;
+}
+
+/* Board styling */
+.tic-board {
+  display: grid;
+  grid-template-columns: repeat(3, 60px);
+  grid-template-rows: repeat(3, 60px);
+  gap: 0.6rem;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  margin: 0 auto 1.1rem auto;
+  background: none;
+}
+
+@media (max-width: 500px) {
+  .tic-board {
+    grid-template-columns: repeat(3, 17vw);
+    grid-template-rows: repeat(3, 17vw);
+  }
+  .tic-game-surface {
+    padding: 1.3rem 0.4rem 0.8rem 0.4rem;
+    min-width: 0;
+  }
+}
+
+.tic-square {
+  width: 60px;
+  height: 60px;
+  font-size: 2.12rem;
+  font-weight: 700;
+  background: var(--ocean-bg);
+  border: 2.5px solid var(--ocean-primary);
+  color: var(--ocean-text);
+  border-radius: 12px;
+  transition: background var(--ocean-transition), box-shadow var(--ocean-transition), border-color var(--ocean-transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 1px 6px 0 rgba(37, 99, 235, 0.06);
+  outline: none;
+}
+
+.tic-square:focus {
+  border-color: var(--ocean-secondary);
+  box-shadow: 0 0 0 2px var(--ocean-secondary)22;
+}
+
+.tic-square:hover:not(:disabled):not(.winner-cell) {
+  background: #e0e7ff;
+  border-color: var(--ocean-primary);
+}
+
+.tic-square:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+/* Winning cells highlight */
+.winner-cell {
+  background: #e0faed;
+  border-color: var(--ocean-success);
+  color: var(--ocean-success);
+  animation: winnerPulse 0.9s cubic-bezier(.4,0,.2,1) 1;
+}
+
+@keyframes winnerPulse {
+  0% { background: #fffbe8; }
+  50% { background: #e0faed; }
+  100% { background: #e0faed; }
+}
+
+.tic-reset-btn {
+  display: block;
+  margin: 1.4rem auto 0 auto;
+  background: var(--ocean-primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.78em 2.2em;
+  font-size: 1.02rem;
+  font-weight: 600;
+  box-shadow: var(--ocean-shadow);
+  cursor: pointer;
+  transition: background var(--ocean-transition), box-shadow var(--ocean-transition), filter var(--ocean-transition);
+}
+.tic-reset-btn:hover, .tic-reset-btn:focus {
+  background: var(--ocean-secondary);
+  color: var(--ocean-text);
+  outline: none;
+}
+
+.tic-playerX {
+  color: var(--ocean-primary);
+}
+.tic-playerO {
+  color: var(--ocean-secondary);
+}
